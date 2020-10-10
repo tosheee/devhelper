@@ -13,15 +13,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
 
+View::composer('*', function($view) { $view->with('menu', App\Node::createMenu()); });
+
+View::composer('*', function($view) { $view->with('nodes', App\Node::all()); });
+
+View::composer('*', function($view) { $view->with('children', App\Children::all()); });
 
 Route::get('/', function () { return view('home'); })->middleware('auth');
 
+
+
+
 Route::get('/home', 'HomeController@index');
 
-Auth::routes();
+Route::get('/create', 'HomeController@create');
+
+//Route::resource('create', HomeController::class);
 
 
+
+
+
+#Route::post('/create', 'HomeController@create');
+
+//Route::post('home/create/{id?}', function($id = null) {
+    //$subCategoryAttributes = App\Admin\SubCategory::where('category_id', $id)->get();
+    //$subCategoryOptions = array();
+    //foreach($subCategoryAttributes as $key => $subCatAttribute)
+    //{
+       // $subCategoryOptions[$key] = [$subCatAttribute->id, $subCatAttribute->name, $subCatAttribute->identifier];
+    //}
+
+    //return $subCategoryOptions;
+//});
 
 
 

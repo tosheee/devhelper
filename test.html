@@ -1,0 +1,96 @@
+
+
+
+
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">{{ __('Dashboard') }}</div>
+
+            <div class="card-body">
+                @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+                @endif
+
+                {{ __('You are logged in!') }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+
+
+<?php
+
+
+    foreach($children as $child){
+
+        for($i = 0; $i < count($nodes); $i++){
+
+            if($child->node_id == $nodes[$i]->node_id){
+
+$menu[$child->node_id] = array('text' => $nodes[$i]->name, 'parentID' => $child->father_id == 0 ? null : $child->father_id);
+}
+}
+}
+
+
+
+
+$addedAsChildren = array();
+
+foreach ($menu as $id => &$menuItem) { // note that we use a reference so we don't duplicate the array
+if (!empty($menuItem['parentID'])) {
+$addedAsChildren[] = $id;
+
+if (!isset($menu[$menuItem['parentID']]['children'])) {
+$menu[$menuItem['parentID']]['children'] = array($id => &$menuItem);
+} else {
+$menu[$menuItem['parentID']]['children'][$id] = &$menuItem;
+}
+}
+
+unset($menuItem['parentID']); // we don't need this any more
+}
+
+unset($menuItem); // unset the reference
+
+foreach ($addedAsChildren as $itemID) {
+unset($menu[$itemID]); // remove it from root so it's only in the ['children'] subarray
+}
+
+echo makeTree($menu);
+
+function makeTree($menu, $type_list = '<ul id="myUL">', $flag=0) {
+
+    $tree = $type_list;
+
+    foreach ($menu as $id => $menuItem) {
+
+    $tree .= '<li><span class="caret">' . $menuItem['text'] . '</span>';
+
+        $tree .= '<li>' . $menuItem['text'];
+
+        if (!empty($menuItem['children'])) {
+        $tree .= makeTree($menuItem['children'], '<ul class="nested">');
+            }
+
+            $tree .= '</li>';
+    }
+
+    return $tree . '</ul>';
+}
+
+
+
+?>
