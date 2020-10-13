@@ -50,7 +50,7 @@
 
         .caret::before {
             content: "\25B6";
-            color: black;
+            color: #fbf9f7;
             display: inline-block;
             margin-right: 6px;
         }
@@ -76,6 +76,8 @@
     <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 
     <script src={{ asset('tinymce_editor.js')}}></script>
+
+
 
 </head>
 <body>

@@ -16,9 +16,9 @@ class Node extends Model
 
         foreach($children as $child){
             for($i = 0; $i < count($nodes); $i++){
-                if($child->node_id == $nodes[$i]->node_id){
+                if($child->id == $nodes[$i]->id){
                     $parentId = $child->father_id == 0 ? null : $child->father_id;
-                    $menu[$child->node_id] = array('text' => $nodes[$i]->name, 'parentID' => $parentId);
+                    $menu[$child->id] = array('text' => $nodes[$i]->name, 'parentID' => $parentId);
                 }
             }
         }
