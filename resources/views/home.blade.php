@@ -29,9 +29,11 @@
 
                         <input type="number" name="level_node" id="level_node"/>
 
-                        <button type="button" id="button_new" class="btn btn-primary">New</button>
+                        <button type="button" id="button_new" class="btn btn-primary btn-sm">New</button>
 
-                        <input type="submit" name="commit" value="Обновяване" class="btn btn-success">
+                        <input type="submit" name="commit" value="Обновяване" class="btn btn-success btn-sm">
+
+                        <button type="button" id="button_new" class="btn btn-danger btn-sm">Delete</button>
 
                         <textarea class="form-control" id="code_preview" name="txt_node" style=""></textarea>
 

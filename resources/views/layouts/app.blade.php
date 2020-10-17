@@ -50,7 +50,7 @@
 
         .caret::before {
             content: "\25B6";
-            color: #fbf9f7;
+            color: #1e6eff;
             display: inline-block;
             margin-right: 6px;
         }

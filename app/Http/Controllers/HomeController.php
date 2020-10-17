@@ -32,16 +32,33 @@ class HomeController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'name_node' => 'required'
-        ]);
+        $father_id = $request->input('node_id');
 
-        var_dump($request);
+        if(!isset($father_id))
+        {
+            $father_id = 0;
+        }
+
+        $children = new Children();
+        $children->id = Node::all()->last()->id + 1;
+        $children->father_id = $father_id;
+        $children->save();
+
+        $level_node = $request->input('level_node');
+
+        if (isset($level_node))
+        {
+            $level_node += 1;
+        }
+        else
+        {
+            $level_node = 0;
+        }
+
         $node = new Node();
-        $node->name_company    = $request->input('name_company');
-        $node->address_com     = $request->input('address_com');
-        $node->email_com       = $request->input('email_com');
-        $node->phone_com       = $request->input('phone_com');
+        $node->name  = $request->input('name_node');
+        $node->txt   = $request->input('txt_node');
+        $node->level = $level_node;
         $node->save();
 
         return redirect('home')->with('success', 'Информациата за сайта е създадена')->with('title', 'Информация за сайта');
