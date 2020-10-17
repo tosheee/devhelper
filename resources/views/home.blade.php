@@ -18,13 +18,17 @@
             </script>
 
 
-                <div class="basic-grey">
+                <div class="col">
                     <form method="POST" id="form_node" action="create" accept-charset="UTF-8" enctype="multipart/form-data">
 
                         {{ csrf_field() }}
+
                         <input type="number" name="node_id" id="node_id"/>
+
                         <input type="text" name="name_node" id="name_node"/>
+
                         <input type="number" name="level_node" id="level_node"/>
+
                         <button type="button" id="button_new" class="btn btn-primary">New</button>
 
                         <input type="submit" name="commit" value="Обновяване" class="btn btn-success">
