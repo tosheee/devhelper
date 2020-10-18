@@ -71,20 +71,23 @@ class HomeController extends Controller
         //$this->validate($request, [
           //  'name_node' => 'required'
         //]);
+        $u_node_id   = $request->input('node_id');
 
-        $node = Node::find($request->input('node_id'));
-
-
+        $node = Node::find($u_node_id);
         $node->name  = $request->input('name_node');
         $node->txt   = $request->input('txt_node');
         $node->level = $request->input('level_node');
         $node->save();
 
-        return redirect('home')->with('success', 'Информациата за сайта е създадена')->with('title', 'Информация за сайта');
+        return redirect('home')->with('u_node_id', $u_node_id);
     }
 
     public function destroy(Request $request)
     {
+        $node = Node::find($request->input('node_id'));
+        $child = Children::find($request->input('node_id'));
+        $child->delete();
+        $node->delete();
 
         return view('home');
     }

@@ -28,5 +28,7 @@ Route::get('/', function () { return view('home'); })->middleware('auth');
 
 Route::get('/home', 'HomeController@index');
 
+Route::post('delete/{id}',      'HomeController@destroy');
+
 Route::resource('create',      'HomeController');
 

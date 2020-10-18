@@ -31,9 +31,9 @@
 
                         <button type="button" id="button_new" class="btn btn-primary btn-sm">New</button>
 
-                        <input type="submit" name="commit" value="Обновяване" class="btn btn-success btn-sm">
+                        <input type="submit" name="commit" value="Submit" class="btn btn-success btn-sm">
 
-                        <button type="button" id="button_new" class="btn btn-danger btn-sm">Delete</button>
+                        <button type="submit" class="btn btn-danger btn-sm" id="btn_delete">Delete</button>
 
                         <textarea class="form-control" id="code_preview" name="txt_node" style=""></textarea>
 
@@ -41,27 +41,27 @@
                             <input name="_method" type="hidden" value="POST" id="input_method">
                         </div>
 
-
                     </form>
                 </div>
             </div>
 
             <script>
-                var app = <?php echo json_encode($nodes); ?>;
+                nodes_data = <?php echo json_encode($nodes); ?>;
+
                 $("a.button-vertical-menu").on("click", function(e)
                 {
                     e.preventDefault();
-
-                    for(var i=0; i < app.length; i++)
+                    for(var i=0; i < nodes_data.length; i++)
                     {
-                        if ($(this).attr('id') == app[i].id)
+                        if ($(this).attr('id') == nodes_data[i].id)
                         {
-                            $("#form_node").attr('action', 'create/'+ app[i].id);
-                            $('#node_id').val(app[i].id);
-                            $('#name_node').val(app[i].name);
+                            $("#form_node").attr('action', '/create/'+ nodes_data[i].id);
+                            $("#btn_delete").attr('formaction', '/delete/'+ nodes_data[i].id);
+                            $('#node_id').val(nodes_data[i].id);
+                            $('#name_node').val(nodes_data[i].name);
                             $('#input_method').val('PUT');
-                            $('#level_node').val(app[i].level);
-                            tinymce.activeEditor.setContent(app[i].txt);
+                            $('#level_node').val(nodes_data[i].level);
+                            tinymce.activeEditor.setContent(nodes_data[i].txt);
                             tinymce.activeEditor.execCommand('mceAutoResize');
                         }
                     }
@@ -75,11 +75,14 @@
                     $('#input_method').val('POST');
                     tinymce.activeEditor.setContent('');
                     tinymce.activeEditor.execCommand('mceAutoResize');
-
-
                 });
 
+                $("#btn_delete").on("click", function(e)
+                {
+                    var id = $('#node_id').val();
+                    $('#input_method').val('POST');
+                });
             </script>
-    </div>
+        </div>
     </div>
 @endsection
