@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\View;
 
 use Illuminate\Http\Request;
 use App\Node;
@@ -38,9 +39,10 @@ class HomeController extends Controller
         {
             $father_id = 0;
         }
-
+        $last_id = Node::all()->last()->id;
+        $u_node_id = $last_id + 1;
         $children = new Children();
-        $children->id = Node::all()->last()->id + 1;
+        $children->id =  $u_node_id;
         $children->father_id = $father_id;
         $children->save();
 
@@ -61,7 +63,7 @@ class HomeController extends Controller
         $node->level = $level_node;
         $node->save();
 
-        return redirect('home')->with('success', 'Информациата за сайта е създадена')->with('title', 'Информация за сайта');
+        return redirect('home')->with('u_node_id', $u_node_id);
     }
 
 
@@ -71,6 +73,7 @@ class HomeController extends Controller
         //$this->validate($request, [
           //  'name_node' => 'required'
         //]);
+
         $u_node_id   = $request->input('node_id');
 
         $node = Node::find($u_node_id);
@@ -79,7 +82,7 @@ class HomeController extends Controller
         $node->level = $request->input('level_node');
         $node->save();
 
-        return redirect('home')->with('u_node_id', $u_node_id);
+        return View::make("home")->with('u_node_id', $u_node_id);
     }
 
     public function destroy(Request $request)
@@ -89,11 +92,8 @@ class HomeController extends Controller
         $child->delete();
         $node->delete();
 
-        return view('home');
+        return back()->with('u_node_id', 'destroy');
     }
-
-
-
 
 
     public function show(Request $request)

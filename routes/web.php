@@ -24,11 +24,10 @@ View::composer('*', function($view) { $view->with('children', App\Children::all(
 Route::get('/', function () { return view('home'); })->middleware('auth');
 
 
+Route::get('/home/', 'HomeController@index');
 
+Route::post('/delete/{id}', 'HomeController@destroy');
 
-Route::get('/home', 'HomeController@index');
+Route::post('/update/{id}', 'HomeController@update');
 
-Route::post('delete/{id}',      'HomeController@destroy');
-
-Route::resource('create',      'HomeController');
-
+Route::post('/new/',         'HomeController@store');
