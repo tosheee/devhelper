@@ -32,13 +32,13 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
-
         $father_id = $request->input('node_id');
 
         if(!isset($father_id))
         {
             $father_id = 0;
         }
+
         $last_id = Node::all()->last()->id;
         $u_node_id = $last_id + 1;
         $children = new Children();
@@ -48,18 +48,13 @@ class HomeController extends Controller
 
         $level_node = $request->input('level_node');
 
-        if (isset($level_node))
-        {
-            $level_node += 1;
-        }
-        else
-        {
-            $level_node = 0;
-        }
+        $level_node = isset($level_node) ?  $level_node += 1 : 0;
+
+        $txt_node = $request->input('txt_node');
 
         $node = new Node();
         $node->name  = $request->input('name_node');
-        $node->txt   = $request->input('txt_node');
+        $node->txt   = isset($txt_node) ? $txt_node : '';
         $node->level = $level_node;
         $node->save();
 

@@ -2,7 +2,7 @@
 
     .sidebar-menu {
         width: 250px;
-        min-height: 545px;
+        max-height: 600px;
         transition: width ease 0.1s;
         overflow: auto;
     }

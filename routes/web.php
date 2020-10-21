@@ -30,4 +30,4 @@ Route::post('/delete/{id}', 'HomeController@destroy');
 
 Route::post('/update/{id}', 'HomeController@update');
 
-Route::post('/new/',         'HomeController@store');
+Route::post('/new',         'HomeController@store');
