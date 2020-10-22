@@ -15,19 +15,23 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-View::composer('*', function($view) { $view->with('menu', App\Node::createMenu()); });
+Route::group(['middleware' => 'auth'], function () {
 
-View::composer('*', function($view) { $view->with('nodes', App\Node::all()); });
+    View::composer('*', function($view) { $view->with('menu', App\Node::createMenu()); });
 
-View::composer('*', function($view) { $view->with('children', App\Children::all()); });
+    View::composer('*', function($view) { $view->with('nodes', App\Node::all()); });
 
-Route::get('/', function () { return view('home'); })->middleware('auth');
+    View::composer('*', function($view) { $view->with('children', App\Children::all()); });
 
+    Route::get('/', function () { return view('home'); })->middleware('auth');
 
-Route::get('/home/', 'HomeController@index');
+    Route::get('/home/', 'HomeController@index');
 
-Route::post('/delete/{id}', 'HomeController@destroy');
+    Route::any('/update/{id}', 'HomeController@update_note');
 
-Route::post('/update/{id}', 'HomeController@update_note');
+    Route::post('/delete/{id}', 'HomeController@destroy');
 
-Route::post('/new',         'HomeController@store');
+    Route::post('/new',         'HomeController@store');
+
+    Route::resource('home', HomeController::class);;
+});
