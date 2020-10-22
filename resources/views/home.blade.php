@@ -85,8 +85,14 @@
                 $('a.button-vertical-menu').on('click', function(e)
                 {
                     e.preventDefault();
-                    var nn_val = $('#node_id').val()
-                    $('#' + nn_val).css('color', '#20c997');
+                    var nn_val = $('input#node_id');
+
+                    if (nn_val.val() !== '')
+                    {
+                        var select_id = "#"+nn_val.val();
+                        $(select_id).css('color', '#20c997');
+                    }
+
                     $(this).css('color', '#FC7753');
                     enter_form($(this).attr('id'));
                 });
