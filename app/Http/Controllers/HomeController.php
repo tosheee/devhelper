@@ -65,9 +65,9 @@ class HomeController extends Controller
     public function update_note(Request $request)
     {
 
-        //$this->validate($request, [
-          //  'name_node' => 'required'
-        //]);
+        $this->validate($request, [
+            'name_node' => 'required'
+        ]);
 
         $u_node_id   = $request->input('node_id');
 
