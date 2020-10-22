@@ -28,6 +28,6 @@ Route::get('/home/', 'HomeController@index');
 
 Route::post('/delete/{id}', 'HomeController@destroy');
 
-Route::post('/update/{id}', 'HomeController@update');
+Route::post('/update/{id}', 'HomeController@update_note');
 
 Route::post('/new',         'HomeController@store');
