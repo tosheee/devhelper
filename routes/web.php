@@ -33,5 +33,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/new',         'HomeController@store');
 
-    Route::resource('home', HomeController::class);;
+    //Route::resource('home', HomeController::class);;
 });
