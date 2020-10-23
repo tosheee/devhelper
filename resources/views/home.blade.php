@@ -23,7 +23,9 @@
 
                     <button type="button" id="button_new_note" class="btn btn-primary btn-sm">New note</button>
 
-                    <button type="button" id="button_new_subnote" class="btn btn-primary btn-sm">New sub note</button>
+                    <button type="button" id="button_new_subnote" class="btn btn-primary btn-sm">Sub note</button>
+
+                    <button type="button" id="button_update" class="btn btn-secondary btn-sm">Update</button>
 
                     <input type="submit" name="commit" value="Submit" class="btn btn-success btn-sm">
 
@@ -67,8 +69,8 @@
                     e.preventDefault();
                     $('#form_node').attr('action', '/new');
                     $('#node_id').val('');
-                    $('#name_node').val('');
-                    $('#level_node').val(0)
+                    $('#input_method').val('PUT');
+                    $('#level_node').val(0);
                     tinymce.activeEditor.setContent('');
                     tinymce.activeEditor.execCommand('mceAutoResize');
                 });
@@ -80,6 +82,15 @@
                     $('#name_node').val('');
                     tinymce.activeEditor.setContent('');
                     tinymce.activeEditor.execCommand('mceAutoResize');
+                });
+
+                $('#button_update').on("click", function(e)
+                {
+                    e.preventDefault();
+                    var nn_val = $('input#node_id');
+                    $('#form_node').attr('action', '/update/'+nn_val.val());
+                    $('#input_method').val('PUT');
+
                 });
 
                 $('a.button-vertical-menu').on('click', function(e)
