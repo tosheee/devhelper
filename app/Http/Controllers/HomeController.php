@@ -39,12 +39,7 @@ class HomeController extends Controller
             $father_id = 0;
         }
 
-        $last_id = Node::all()->last()->id;
-        $u_node_id = $last_id + 1;
-        $children = new Children();
-        $children->id =  $u_node_id;
-        $children->father_id = $father_id;
-        $children->save();
+
 
         $level_node = $request->input('level_node');
 
@@ -58,7 +53,15 @@ class HomeController extends Controller
         $node->level = $level_node;
         $node->save();
 
-        return redirect('home')->with('u_node_id', $u_node_id);
+
+        $last_id = Node::all()->last()->id;
+
+        $children = new Children();
+        $children->id =  $last_id;
+        $children->father_id = $father_id;
+        $children->save();
+
+        return redirect('home')->with('u_node_id', $last_id);
     }
 
     public function update(Request $request)
@@ -80,8 +83,12 @@ class HomeController extends Controller
 
     public function destroy(Request $request)
     {
-        $node = Node::find($request->input('node_id'));
-        $child = Children::find($request->input('node_id'));
+
+        $node_id = $request->input('node_id');
+
+        $node = Node::find($node_id);
+
+        $child = Children::find($node_id);
         $child->delete();
         $node->delete();
 

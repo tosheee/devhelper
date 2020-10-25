@@ -17,7 +17,7 @@
 function makeTree($menu, $type_list = '<ul id="myUL" ><li class="menu-toggle cf"><div class="menu-toggle-btn"><i class="fa fa-bars"></i></div>') {
 
     $tree = $type_list;
-    if(isset($menu)){
+
 
         foreach ($menu as $id => $menuItem) {
 
@@ -42,7 +42,7 @@ function makeTree($menu, $type_list = '<ul id="myUL" ><li class="menu-toggle cf"
         }
 
         echo makeTree($menu);
-    }
+
 ?>
 
 
