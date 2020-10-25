@@ -17,31 +17,32 @@
 function makeTree($menu, $type_list = '<ul id="myUL" ><li class="menu-toggle cf"><div class="menu-toggle-btn"><i class="fa fa-bars"></i></div>') {
 
     $tree = $type_list;
+    if(isset($menu)){
 
-    foreach ($menu as $id => $menuItem) {
+        foreach ($menu as $id => $menuItem) {
 
-        if(!empty($menuItem['children']))
-        {
-            $tree .= '<li><span class="caret"><a href="#" class="button-vertical-menu title" id="'.$id.'">' . $menuItem['text'] . '</a></span>';
+            if(!empty($menuItem['children']))
+            {
+                $tree .= '<li><span class="caret"><a href="#" class="button-vertical-menu title" id="'.$id.'">' . $menuItem['text'] . '</a></span>';
+            }
+            else
+            {
+                $tree .= '<li><a class="button-vertical-menu title" id="'.$id.'">' . $menuItem['text'];
+            }
+
+            if (!empty($menuItem['children']))
+            {
+                $tree .= makeTree($menuItem['children'], '<ul class="nested">');
+            }
+
+            $tree .= '</a></li>';
         }
-        else
-        {
-            $tree .= '<li><a class="button-vertical-menu title" id="'.$id.'">' . $menuItem['text'];
+
+        return $tree . '</ul>';
         }
 
-        if (!empty($menuItem['children']))
-        {
-            $tree .= makeTree($menuItem['children'], '<ul class="nested">');
-        }
-
-        $tree .= '</a></li>';
+        echo makeTree($menu);
     }
-
-    return $tree . '</ul>';
-}
-
-echo makeTree($menu);
-
 ?>
 
 

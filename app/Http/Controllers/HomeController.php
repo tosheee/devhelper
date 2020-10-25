@@ -61,10 +61,8 @@ class HomeController extends Controller
         return redirect('home')->with('u_node_id', $u_node_id);
     }
 
-
     public function update(Request $request)
     {
-
         $this->validate($request, [
             'name_node' => 'required'
         ]);
@@ -89,6 +87,12 @@ class HomeController extends Controller
 
         return back()->with('u_node_id', 'destroy');
     }
+
+
+
+
+
+
 
 
     public function show(Request $request)
