@@ -62,7 +62,7 @@ class HomeController extends Controller
     }
 
 
-    public function update_note(Request $request)
+    public function update(Request $request)
     {
 
         $this->validate($request, [

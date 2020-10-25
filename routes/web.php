@@ -27,9 +27,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home/', 'HomeController@index');
 
-    Route::any('/update/{id}', 'HomeController@update_note');
+    Route::put('/update/{id}', 'HomeController@update');
 
-    Route::post('/delete/{id}', 'HomeController@destroy');
+    Route::delete('/delete/{id}', 'HomeController@destroy');
 
     Route::post('/new',         'HomeController@store');
 
