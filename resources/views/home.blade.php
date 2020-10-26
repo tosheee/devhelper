@@ -66,8 +66,9 @@
                         $('#node_id').val(nodes_data[i].id);
                         $('#name_node').val(nodes_data[i].name);
                         $('#level_node').val(nodes_data[i].level);
-                        tinymce.activeEditor.setContent(nodes_data[i].txt);
-                        tinymce.activeEditor.execCommand('mceAutoResize');
+                        $('#code_preview').val(nodes_data[i].txt)
+                        //tinymce.activeEditor.setContent(nodes_data[i].txt);
+                        //tinymce.activeEditor.execCommand('mceAutoResize');
                     }
                 }
             }

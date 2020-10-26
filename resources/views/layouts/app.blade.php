@@ -75,7 +75,7 @@
 
     <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 
-    <script src={{ asset('tinymce_editor.js')}}></script>
+    <script src={{ asset('')}}></script>
 
 
 
