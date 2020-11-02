@@ -6,13 +6,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-3">
-
-            </div>
-
-
-
-            <div class="col-9">
+            <div class="col-12">
                 <div class="top-content">
                     <form method="POST" id="form_node" action="/notes/{{ $note->id ?? '' }}" class="form-actions" accept-charset="UTF-8" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -29,7 +23,7 @@
                 </div>
 
 
-                <textarea class="form-control" id="note_content" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
+                <textarea readonly class="form-control" id="note_content" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
 
 
             </div>

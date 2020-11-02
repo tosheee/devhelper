@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-3">
+            <div class="col-2">
                 <style>
 
                     .sidebar-menu {
@@ -74,7 +74,7 @@
 
 
 
-            <div class="col-9">
+            <div class="col-10">
                 <div class="top-content">
                     <form method="POST" id="form_node" action="/notes/{{ $note->id ?? '' }}" class="form-actions" accept-charset="UTF-8" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -94,7 +94,7 @@
 
 
 
-                <textarea class="form-control" id="note_content" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
+                <textarea  readonly class="form-control" id="note_content" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
 
             </div>
         </div>
@@ -113,7 +113,7 @@
                         $('#node_id').text(nodes_data[i].id);
                         $('#name_node').text(nodes_data[i].name);
                         $('#level_node').text(nodes_data[i].level);
-                        $('#code_preview').val(nodes_data[i].content);
+                        $('#note_content').val(nodes_data[i].content);
 
                         $( "#btn-edit" ).remove();
                         var btnEditNote = '<a class="btn btn-primary btn-sm" id="btn-edit" href="/notes/'+ nodes_data[i].id +'/edit"> Edit </a>';
