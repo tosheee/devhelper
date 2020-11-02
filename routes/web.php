@@ -17,11 +17,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
-    View::composer('*', function($view) { $view->with('menu', App\Node::createMenu()); });
 
-    View::composer('*', function($view) { $view->with('nodes', App\Node::all()); });
-
-    View::composer('*', function($view) { $view->with('children', App\Children::all()); });
 
     Route::get('/', function () { return view('home'); })->middleware('auth');
 
@@ -33,5 +29,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/new',         'HomeController@store');
 
-    //Route::resource('home', HomeController::class);;
+    Route::resource('/notes', 'NotesController');
 });

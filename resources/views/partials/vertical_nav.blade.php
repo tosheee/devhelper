@@ -23,7 +23,13 @@ function makeTree($menu, $type_list = '<ul id="myUL" ><li class="menu-toggle cf"
 
             if(!empty($menuItem['children']))
             {
-                $tree .= '<li><span class="caret"><a href="#" class="button-vertical-menu title" id="'.$id.'">' . $menuItem['text'] . '</a></span>';
+
+                //if(empty($menuItem['text'])){
+
+
+                //echo '<br>'.$id;
+                $tree .= '<li><span class="caret"><a href="#" class="button-vertical-menu title" id="'.$id.'">' . empty($menuItem['text']) ? 'BROKEN:'.$id.'<br>'  : $menuItem['text']  . '</a></span>';
+
             }
             else
             {

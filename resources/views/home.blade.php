@@ -5,11 +5,12 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="sidebar-menu">
-                @include('partials.vertical_nav')
+
+            <div class="col-8">
+
             </div>
 
-            <div class="col">
+            <div class="col-2">
                 <h5>{{ $u_node_id ?? '' }}</h5>
 
                 <form method="POST" id="form_node" action="" accept-charset="UTF-8" enctype="multipart/form-data">
@@ -41,7 +42,10 @@
 
                     <input type="submit" name="commit" value="Submit" class="btn btn-success btn-sm">
 
-                    <textarea class="form-control" id="code_preview" name="txt_node" style=""></textarea>
+                   <!--  <textarea class="form-control" id="code_preview" name="txt_node" style=""></textarea>-->
+                    <div  id="code_preview">
+
+                    </div>
 
                     <div class="actions">
                         <input name="_method" type="hidden" value="" id="input_method">
@@ -55,7 +59,7 @@
         <script>
             function enter_form(node_id)
             {
-                var nodes_data = {!! json_encode($nodes) !!};
+                var nodes_data = {!! json_encode($nodes ?? []) !!};
 
                 for(var i=0; i < nodes_data.length; i++)
                 {
@@ -66,7 +70,8 @@
                         $('#node_id').val(nodes_data[i].id);
                         $('#name_node').val(nodes_data[i].name);
                         $('#level_node').val(nodes_data[i].level);
-                        $('#code_preview').val(nodes_data[i].txt)
+                        //$('#code_preview').val(nodes_data[i].txt)
+                        $('#code_preview').text(nodes_data[i].txt)
                         //tinymce.activeEditor.setContent(nodes_data[i].txt);
                         //tinymce.activeEditor.execCommand('mceAutoResize');
                     }
