@@ -29,7 +29,8 @@
                 </div>
 
 
-                <div  id="code_preview">{!! $note->content ?? '' !!} </div>
+                <textarea class="form-control" id="note_content" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
+
 
             </div>
         </div>

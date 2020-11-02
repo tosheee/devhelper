@@ -93,7 +93,8 @@
                 </div>
 
 
-                <div  id="code_preview">{!! $note->content ?? '' !!} </div>
+
+                <textarea class="form-control" id="note_content" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
 
             </div>
         </div>
@@ -112,7 +113,7 @@
                         $('#node_id').text(nodes_data[i].id);
                         $('#name_node').text(nodes_data[i].name);
                         $('#level_node').text(nodes_data[i].level);
-                        $('#code_preview').text(nodes_data[i].content);
+                        $('#code_preview').val(nodes_data[i].content);
 
                         $( "#btn-edit" ).remove();
                         var btnEditNote = '<a class="btn btn-primary btn-sm" id="btn-edit" href="/notes/'+ nodes_data[i].id +'/edit"> Edit </a>';
