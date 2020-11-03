@@ -34,7 +34,18 @@
                 </div>
 
                 <br/>
-                <textarea  readonly class="form-control" id="note_content" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
+
+                <textarea id="summernote" name="note_content">{{ $note->content ?? '' }}</textarea>
+
+                <script>
+                    $('#summernote').summernote({
+                        placeholder: 'Enter note',
+                        tabsize: 10,
+                        //height: 400
+                        minHeight: 350,
+                        maxHeight: 500
+                    });
+                </script>
 
             </div>
         </div>
@@ -53,8 +64,8 @@
                         $('#note_id').val(nodes_data[i].id);
                         $('#note_name').val(nodes_data[i].name);
                         $('#note_level').val(nodes_data[i].level);
-                        $('#note_content').val(nodes_data[i].content);
 
+                        $('#summernote').summernote('code', nodes_data[i].content);
                         $('#btn-edit').attr('href', '/notes/'+ nodes_data[i].id +'/edit');
                         $('#btn-show').attr('href', '/notes/'+ nodes_data[i].id);
                         $('#btn-create').attr('href', '/notes/create');

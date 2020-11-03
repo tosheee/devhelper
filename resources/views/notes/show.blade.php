@@ -2,6 +2,13 @@
 
 @section('content')
     <script>//$('.sidebar-menu').toggleClass('sidebar-menu-closed');</script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            document.title = "{{ $note->name ?? 'MemoTree' }}";
+        });
+
+    </script>
 
     <div class="container-fluid">
         <div class="row">
@@ -32,8 +39,18 @@
                 </div>
 
                 <br/>
-                <textarea readonly class="form-control" id="note_content" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
 
+                <textarea id="summernote" name="note_content">{{ $note->content ?? '' }}</textarea>
+
+                <script>
+                    $('#summernote').summernote({
+                        placeholder: 'Enter note',
+                        tabsize: 10,
+                        //height: 400
+                        minHeight: 350,
+                        maxHeight: 500
+                    });
+                </script>
 
             </div>
         </div>

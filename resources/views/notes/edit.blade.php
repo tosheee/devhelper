@@ -28,7 +28,18 @@
                     </div>
 
                     <br/>
-                    <textarea class="form-control" id="note_content" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
+
+                    <textarea id="summernote" name="note_content">{{ $note->content ?? '' }}</textarea>
+
+                    <script>
+                        $('#summernote').summernote({
+                            placeholder: 'Enter note',
+                            tabsize: 10,
+                            //height: 400
+                            minHeight: 350,
+                            maxHeight: 500
+                        });
+                    </script>
 
                     <div class="actions">
                         <input name="_method" type="hidden" value="PUT" id="input_method">
