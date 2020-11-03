@@ -17,17 +17,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
-
-
-    Route::get('/', function () { return view('home'); })->middleware('auth');
-
-    Route::get('/home/', 'HomeController@index');
-
-    Route::any('/update/{id}', 'HomeController@update');
-
-    Route::delete('/delete/{id}', 'HomeController@destroy');
-
-    Route::post('/new',         'HomeController@store');
+    Route::get('/', function () { return view('welcome'); })->middleware('auth');
 
     Route::resource('/notes', 'NotesController');
 });

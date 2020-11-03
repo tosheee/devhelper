@@ -1,28 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-    <script>$('.sidebar-menu').toggleClass('sidebar-menu-closed');</script>
+    <script>//$('.sidebar-menu').toggleClass('sidebar-menu-closed');</script>
 
     <div class="container-fluid">
         <div class="row">
+            <div class="col-2">
 
-            <div class="col-12">
+            </div>
+
+            <div class="col-9">
                 <div class="top-content">
                     <form method="POST" id="form_node" action="/notes/{{ $note->id ?? '' }}" class="form-actions" accept-charset="UTF-8" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <input type="submit" name="commit" value="Delete" class="btn btn-danger btn-sm">
+
+                        <div class="input-group">
+                            <input id="note_name"  value="{{ $note->name ?? '' }}" type="text" class="form-control" placeholder="Note name" aria-label="R" aria-describedby="basic-addon2">
+                            <input id="note_level" value="{{ $note->level ?? '' }}" type="number" class="form-control" placeholder="Level" aria-label="R" aria-describedby="basic-addon2">
+                            <input id="note_id"    value="{{ $note->id ?? '' }}" type="number" class="form-control" placeholder="ID" aria-label="R" aria-describedby="basic-addon2">
+
+                            <div class="input-group-append">
+                                <a id="btn-edit" class="btn btn-outline-secondary" href="/notes/{{ $note->id ?? '' }}/edit"> Edit </a>
+                                <a id="btn-create" class="btn btn-outline-secondary" href="/notes/create"> Create </a>
+                                <a id="btn-show" class="btn btn-outline-secondary" href="/notes"> Back </a>
+                                <input type="submit" class="btn btn-outline-secondary" name="commit" value="Delete">
+                            </div>
+                        </div>
+
                         <input name="_method" type="hidden" value="DELETE" id="input_method">
-
-                        <a class="btn btn-primary btn-sm" id="btn-edit" href="/notes/{{ $note->id ?? '' }}/edit"> Edit </a>
                     </form>
-
-                    <strong id="name_node" style="font-size: 1.5em;"> {{ $note->name ?? '' }} </strong>
-                    ID:    <strong id="node_id">{{ $note->id ?? '' }}</strong>
-                    Level: <strong id="level_node">{{ $note->level ?? '' }}</strong>
-
                 </div>
 
-
+                <br/>
                 <textarea readonly class="form-control" id="note_content" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
 
 

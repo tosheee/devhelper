@@ -1,99 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    <script>$('.sidebar-menu').toggleClass('sidebar-menu-closed');</script>
+    <script>//$('.sidebar-menu').toggleClass('sidebar-menu-closed');</script>
 
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-2">
-                <style>
-
-                    .sidebar-menu {
-                        width: 250px;
-                        max-height: 600px;
-                        transition: width ease 0.1s;
-                        overflow: auto;
-                    }
-
-
-
-                </style>
-
-
-                <?php
-
-                function makeTree($note_menu, $type_list = '<ul id="myUL" ><li class="menu-toggle cf"><div class="menu-toggle-btn"><i class="fa fa-bars"></i></div>') {
-
-                    $tree = $type_list;
-
-
-                    foreach ($note_menu as $id => $menuItem) {
-
-                        if(!empty($menuItem['children']))
-                        {
-
-                            $tree .= '<li><span class="caret"><a href="#" class="button-vertical-menu title" id="'.$id.'">' . $menuItem['text']  . '</a></span>';
-
-                        }
-                        else
-                        {
-                            $tree .= '<li><a class="button-vertical-menu title" id="'.$id.'">' . $menuItem['text'];
-                        }
-
-                        if (!empty($menuItem['children']))
-                        {
-                            $tree .= makeTree($menuItem['children'], '<ul class="nested">');
-                        }
-
-                        $tree .= '</a></li>';
-                    }
-
-                    return $tree . '</ul>';
-                }
-
-                echo makeTree($note_menu);
-
-                ?>
-
-
-                <script>
-                    var toggler = document.getElementsByClassName("caret");
-                    var i;
-
-                    for (i = 0; i < toggler.length; i++)
-                    {
-                        toggler[i].addEventListener("click", function() {
-                            this.parentElement.querySelector(".nested").classList.toggle("active");
-                            this.classList.toggle("caret-down");
-                        });
-                    }
-                </script>
-
+            <div class="col-2 sidebar-menu">
+                @include('partials.vertical_nav')
             </div>
 
 
-
-            <div class="col-10">
+            <div class="col-9">
                 <div class="top-content">
                     <form method="POST" id="form_node" action="/notes/{{ $note->id ?? '' }}" class="form-actions" accept-charset="UTF-8" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <input type="submit" name="commit" value="Delete" class="btn btn-danger btn-sm">
+
+                        <div class="input-group">
+                            <input id="note_name"  type="text" class="form-control" placeholder="Note name">
+                            <input id="note_level" type="number" class="form-control" placeholder="Level">
+                            <input id="note_id"    type="number" class="form-control" placeholder="ID">
+
+                            <div class="input-group-append">
+                                <a id="btn-edit"     class="btn btn-outline-secondary" href="/notes/{{ $note->id ?? '' }}/edit"> Edit </a>
+                                <a id="btn-show"     class="btn btn-outline-secondary" href="/notes/{{ $note->id ?? '' }}"> Show </a>
+                                <a id="btn-create"   class="btn btn-outline-secondary" href="/notes/create"> Create </a>
+                                <input id="btn-delete" class="btn btn-outline-secondary" type="submit" name="commit" value="Delete">
+                            </div>
+                        </div>
+
                         <input name="_method" type="hidden" value="DELETE" id="input_method">
-
-                        <a class="btn btn-primary btn-sm" id="btn-edit" href="/notes/{{ $note->id ?? '' }}/edit"> Edit </a>
-                        <a class="btn btn-primary btn-sm" id="btn-show" href="/notes/{{ $note->id ?? '' }}"> Show </a>
-                        <a class="btn btn-primary btn-sm" id="btn-create" href="/notes/create"> Create </a>
                     </form>
-
-                    <strong id="name_node" style="font-size: 1.5em;"> {{ $note->name ?? '' }} </strong>
-                    ID:    <strong id="node_id">{{ $note->id ?? '' }}</strong>
-                    Level: <strong id="level_node">{{ $note->level ?? '' }}</strong>
-
                 </div>
 
-
-
+                <br/>
                 <textarea  readonly class="form-control" id="note_content" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
 
             </div>
@@ -110,22 +50,14 @@
                     {
                         $('#form_node').attr('action', '/notes/'+ nodes_data[i].id);
                         $('#input_method').val('DELETE');
-                        $('#node_id').text(nodes_data[i].id);
-                        $('#name_node').text(nodes_data[i].name);
-                        $('#level_node').text(nodes_data[i].level);
+                        $('#note_id').val(nodes_data[i].id);
+                        $('#note_name').val(nodes_data[i].name);
+                        $('#note_level').val(nodes_data[i].level);
                         $('#note_content').val(nodes_data[i].content);
 
-                        $( "#btn-edit" ).remove();
-                        var btnEditNote = '<a class="btn btn-primary btn-sm" id="btn-edit" href="/notes/'+ nodes_data[i].id +'/edit"> Edit </a>';
-                        $( ".form-actions" ).append(btnEditNote);
-
-                        $( "#btn-show" ).remove();
-                        var btnShowNote = '<a class="btn btn-primary btn-sm" id="btn-show" style="margin-left: 5px;" href="/notes/'+ nodes_data[i].id +'"> Show </a>';
-                        $( ".form-actions" ).append(btnShowNote);
-
-                        $( "#btn-create" ).remove();
-                        var btnCreateNote = '<a class="btn btn-primary btn-sm" id="btn-create" style="margin-left: 5px;" href="/notes/create"> Create </a>';
-                        $( ".form-actions" ).append(btnCreateNote);
+                        $('#btn-edit').attr('href', '/notes/'+ nodes_data[i].id +'/edit');
+                        $('#btn-show').attr('href', '/notes/'+ nodes_data[i].id);
+                        $('#btn-create').attr('href', '/notes/create');
                     }
                 }
             }

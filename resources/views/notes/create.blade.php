@@ -1,90 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <script>$('.sidebar-menu').toggleClass('sidebar-menu-closed');</script>
+    <script>//$('.sidebar-menu').toggleClass('sidebar-menu-closed');</script>
 
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-2">
-                <style>
-
-                    .sidebar-menu {
-                        width: 250px;
-                        max-height: 600px;
-                        transition: width ease 0.1s;
-                        overflow: auto;
-                    }
-
-
-
-                </style>
-
-
-                <?php
-
-                function makeTree($note_menu, $type_list = '<ul id="myUL" ><li class="menu-toggle cf"><div class="menu-toggle-btn"><i class="fa fa-bars"></i></div>') {
-
-                    $tree = $type_list;
-
-
-                    foreach ($note_menu as $id => $menuItem) {
-
-                        if(!empty($menuItem['children']))
-                        {
-                            $tree .= '<li><span class="caret"><a href="#" class="button-vertical-menu title" id="'.$id.'">' . $menuItem['text']  . '</a></span>';
-                        }
-                        else
-                        {
-                            $tree .= '<li><a class="button-vertical-menu title" id="'.$id.'">' . $menuItem['text'];
-                        }
-
-                        if (!empty($menuItem['children']))
-                        {
-                            $tree .= makeTree($menuItem['children'], '<ul class="nested">');
-                        }
-
-                        $tree .= '</a></li>';
-                    }
-
-                    return $tree . '</ul>';
-                }
-
-                echo makeTree($note_menu);
-
-                ?>
-
-
-                <script>
-                    var toggler = document.getElementsByClassName("caret");
-                    var i;
-
-                    for (i = 0; i < toggler.length; i++)
-                    {
-                        toggler[i].addEventListener("click", function() {
-                            this.parentElement.querySelector(".nested").classList.toggle("active");
-                            this.classList.toggle("caret-down");
-                        });
-                    }
-                </script>
-
+            <div class="col-2 sidebar-menu">
+                @include('partials.vertical_nav')
             </div>
 
-            <div class="col-10">
+            <div class="col-9">
                 <form method="POST" id="form_node" action="/notes" accept-charset="UTF-8" enctype="multipart/form-data">
 
                     {{ csrf_field() }}
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input id="note_name"  name="note_name" type="text" class="form-control" placeholder="Note name">
+                            <input id="note_level" name="note_level" type="number" class="form-control" placeholder="Level" >
+                            <input id="note_id"    name="note_id" type="number" class="form-control" placeholder="ID">
 
-                    <input type="number" name="note_id" id="note_id" value="{{ $note->id ?? '' }}"/>
+                            <div class="input-group-append">
+                                <a id="btn-show"  class="btn btn-outline-secondary" href="/notes"> Back </a>
+                                <a id="btn-clean" class="btn btn-outline-secondary"  href="#"> Clean </a>
+                                <input id="btn-input" class="btn btn-outline-secondary" type="submit" name="commit" value="Create" >
+                            </div>
+                        </div>
+                    </div>
 
-                    <input type="text" name="note_name" id="note_name" value="{{ $note->name ?? '' }}"/>
-
-                    <input type="number" name="note_level" id="note_level" value="{{ $note->level ?? '' }}"/>
-
-                    <input type="submit" name="commit" value="Submit" class="btn btn-success btn-sm">
-
-                    <a class="btn btn-primary btn-sm" id="btn-clean" href="#"> Clean </a>
-
+                    <br/>
                     <textarea class="form-control" id="code_preview" name="note_content" rows="20" cols="50"style="">{{ $note->content ?? '' }}</textarea>
 
                     <div class="actions">
