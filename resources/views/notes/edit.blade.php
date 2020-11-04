@@ -31,16 +31,6 @@
 
                     <textarea id="summernote" name="note_content">{{ $note->content ?? '' }}</textarea>
 
-                    <script>
-                        $('#summernote').summernote({
-                            placeholder: 'Enter note',
-                            tabsize: 10,
-                            //height: 400
-                            minHeight: 350,
-                            maxHeight: 500
-                        });
-                    </script>
-
                     <div class="actions">
                         <input name="_method" type="hidden" value="PUT" id="input_method">
                     </div>

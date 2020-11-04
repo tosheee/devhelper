@@ -24,7 +24,7 @@
                             <div class="input-group-append">
                                 <a id="btn-edit"     class="btn btn-outline-secondary" href="/notes/{{ $note->id ?? '' }}/edit"> Edit </a>
                                 <a id="btn-show"     class="btn btn-outline-secondary" href="/notes/{{ $note->id ?? '' }}"> Show </a>
-                                <a id="btn-create"   class="btn btn-outline-secondary" href="/notes/create"> Create </a>
+                                <a id="btn-create"   class="btn btn-outline-secondary" href="/notes/create"> Add New</a>
                                 <input id="btn-delete" class="btn btn-outline-secondary" type="submit" name="commit" value="Delete">
                             </div>
                         </div>
@@ -36,16 +36,6 @@
                 <br/>
 
                 <textarea id="summernote" name="note_content">{{ $note->content ?? '' }}</textarea>
-
-                <script>
-                    $('#summernote').summernote({
-                        placeholder: 'Enter note',
-                        tabsize: 10,
-                        //height: 400
-                        minHeight: 350,
-                        maxHeight: 500
-                    });
-                </script>
 
             </div>
         </div>
