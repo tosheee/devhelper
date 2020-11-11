@@ -1,3 +1,23 @@
+<script>
+    $('#summernote').summernote({
+        placeholder: 'Enter note',
+        tabsize: 10,
+        //height: 400
+        minHeight: 400,
+        maxHeight: 600,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+</script>
+
+
 <footer class="mainfooter" role="contentinfo">
     <div class="footer-middle">
         <div class="container">

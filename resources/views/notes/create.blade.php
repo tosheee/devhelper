@@ -6,9 +6,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-2 sidebar-menu">
-                @include('partials.vertical_nav')
-            </div>
+
 
             <div class="col-9">
                 <form method="POST" id="form_node" action="/notes" accept-charset="UTF-8" enctype="multipart/form-data">

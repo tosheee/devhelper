@@ -1,6 +1,18 @@
+<style>
+    ul#nav{
+        padding-left: 3%;
+        list-style-type: none;
+        font-weight: bold;
+    }
+    li{
+        list-style-type: none;
+    }
+
+</style>
+
 <?php
 
-function makeTree($note_menu, $type_list = '<ul id="myUL" ><li class="menu-toggle cf"><div class="menu-toggle-btn"><i class="fa fa-bars"></i></div>') {
+function makeTree($note_menu, $type_list = '<ul id="nav" >') {
 
     $tree = $type_list;
 
@@ -10,7 +22,7 @@ function makeTree($note_menu, $type_list = '<ul id="myUL" ><li class="menu-toggl
         if(!empty($menuItem['children']))
         {
 
-            $tree .= '<li><span class="caret"><a href="#" class="button-vertical-menu title" id="'.$id.'">' . $menuItem['text']  . '</a></span>';
+            $tree .= '<li><span class="caret-vertical-nav"><a href="#" class="button-vertical-menu" id="'.$id.'">' . $menuItem['text']  . '</a></span>';
 
         }
         else
@@ -28,14 +40,15 @@ function makeTree($note_menu, $type_list = '<ul id="myUL" ><li class="menu-toggl
 
     return $tree . '</ul>';
 }
-
-echo makeTree($note_menu);
-
+if (isset($note_menu))
+{
+    echo makeTree($note_menu);
+}
 ?>
 
 
 <script>
-    var toggler = document.getElementsByClassName("caret");
+    var toggler = document.getElementsByClassName("caret-vertical-nav");
     var i;
 
     for (i = 0; i < toggler.length; i++)
