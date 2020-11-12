@@ -1,13 +1,12 @@
 @import "navigations.css";
-
-
-
-#myUL{
-    list-style-type: none;
-    font-weight: bold;
+.padder{
+    max-height: 600px;
 }
 
 
+.w-f.scrollable {
+    max-height: 550px;
+}
 
 
 

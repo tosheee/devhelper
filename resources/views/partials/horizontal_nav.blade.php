@@ -3,8 +3,8 @@
         <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
             <i class="fa fa-bars"></i>
         </a>
-        <a href="#" class="navbar-brand" data-toggle="fullscreen">
-            <i class="fa fa-code-fork icon"></i> </a>
+        <a href="/" class="navbar-brand" data-toggle="fullscreen">
+            <i class="fa fa-code-fork icon"></i> MemoTree</a>
 
         <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user"><i class="fa fa-cog"></i></a>
     </div>
@@ -46,7 +46,7 @@
         </li>
         <li>
             <div class="m-t m-l">
-                <a href="price.html" class="dropdown-toggle btn btn-xs btn-primary" title="Upgrade"><i class="fa fa-long-arrow-up"></i></a>
+                <a href="/notes" class="dropdown-toggle btn btn-xs btn-primary" title="Upgrade"><i class="fa fa-long-arrow-up"></i> Notes</a>
             </div>
         </li>
     </ul>

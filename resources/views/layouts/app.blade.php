@@ -45,24 +45,18 @@
 <body>
 
     <section class="vbox">
-
         @include('partials.horizontal_nav')
-        <section>
-            <section class="hbox stretch"> <!-- .aside -->
 
-        @include('partials.main_vertical_nav')
+        <section>
+            <section class="hbox stretch">
+
+                @include('partials.main_vertical_nav')
 
                 <section class="scrollable padder">
 
 
                     <div style="height:800px;">
-
                         @yield('content')
-
-                        <!--
-                                        <div id="calendar" style="position: fixed;background: #444;width: 3px;height: 2px;top: -294px;"></div>
-                                        -->
-
                     </div>
 
                     </div>
@@ -70,18 +64,17 @@
             </section>
             <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
         </section>
+
         <aside class="bg-light lter b-l aside-md hide" id="notes">
             <div class="wrapper">Notification</div>
         </aside>
     </section>
-    </section>
 
+</section>
 
+    @include('partials.footer')
 
-        @include('partials.footer')
-
-
-    </section>
+</section>
 
 
 
