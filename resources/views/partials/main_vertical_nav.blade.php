@@ -25,10 +25,17 @@
 
 
 
-                            @include('partials.vertical_nav')
-
 
                             <ul class="nav">
+                                <li class="">
+                                    <a class="" href="">
+                                        <i class="fa fa-dashboard icon">
+                                            <b class="bg-danger"></b>
+                                        </i>
+                                        <span>Notes</span>
+                                    </a>
+                                    @include('partials.vertical_nav')
+                                </li>
                                 <li class="active"> <a href="index-2.html" class="active"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>Workset</span> </a> </li>
                                 <li>
                                     <a href="#layout" >

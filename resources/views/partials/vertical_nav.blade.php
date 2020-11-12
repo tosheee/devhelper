@@ -1,18 +1,8 @@
-<style>
-    ul#nav{
-        padding-left: 3%;
-        list-style-type: none;
-        font-weight: bold;
-    }
-    li{
-        list-style-type: none;
-    }
 
-</style>
 
 <?php
 
-function makeTree($note_menu, $type_list = '<ul id="nav" >') {
+function makeTree($note_menu, $type_list = '<ul class="nav lt" >') {
 
     $tree = $type_list;
 
@@ -22,20 +12,20 @@ function makeTree($note_menu, $type_list = '<ul id="nav" >') {
         if(!empty($menuItem['children']))
         {
 
-            $tree .= '<li><span class="caret-vertical-nav"><a href="#" class="button-vertical-menu" id="'.$id.'">' . $menuItem['text']  . '</a></span>';
+            $tree .= '<li class=""><a href="#" class="button-vertical-menu" id="'.$id.'"> <i class="fa fa-angle-right"></i> <span>'. $menuItem['text']  . '</span></a>';
 
         }
         else
         {
-            $tree .= '<li><a class="button-vertical-menu title" id="'.$id.'">' . $menuItem['text'];
+            $tree .= '<li class=""><a href="#" class="button-vertical-menu" id="'.$id.'"><i class="fa fa-angle-right"></i><span>' . $menuItem['text'];
         }
 
         if (!empty($menuItem['children']))
         {
-            $tree .= makeTree($menuItem['children'], '<ul class="nested">');
+            $tree .= makeTree($menuItem['children'], '<ul class="nav lt">');
         }
 
-        $tree .= '</a></li>';
+        $tree .= '</span></a></li>';
     }
 
     return $tree . '</ul>';
