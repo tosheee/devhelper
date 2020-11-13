@@ -48,6 +48,10 @@ class NotesController extends Controller
         return view('notes.create')->with('notes', $notes)->with('note_menu', $note_menu);
     }
 
+    /**
+     * @param Request $request
+     * @return $this
+     */
     public function store(Request $request)
     {
         $father_id = $request->input('note_id');
@@ -57,25 +61,20 @@ class NotesController extends Controller
             $father_id = 0;
         }
 
-        $level_node = $request->input('note_level');
+        $level_note = $request->input('note_level');
 
-        $level_node = isset($level_node) ?  $level_node += 1 : 0;
+        $level_note = isset($level_note) ?  $level_note += 1 : 0;
 
-        $txt_node = $request->input('note_content');
+        $txt_note = $request->input('note_content');
 
-        $node = new Note();
-        $node->name    = $request->input('note_name');
-        $node->content = isset($txt_node) ? $txt_node : '';
-        $node->level   = $level_node;
-        $node->save();
-
-
+        $note = new Note();
+        $note->name = $request->input('note_name');
+        $note->content = isset($txt_note) ? $txt_note : '';
+        $note->level = $level_note;
+        $note->save();
+        $note->notesChildren()->create(['id'=> $note->id, 'father_id'=> $father_id]);
+        $note->save();
         $last_id = Note::all()->last()->id;
-
-        $noteChildren = new NotesChildren();
-        $noteChildren->id        =  $last_id;
-        $noteChildren->father_id = $father_id;
-        $noteChildren->save();
 
         return redirect('/notes')->with('note_id', $last_id);
     }
