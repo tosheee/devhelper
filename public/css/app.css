@@ -8,7 +8,29 @@
     max-height: 650px;
 }
 
+input.note-input {
+    color: #000000;
+    border: none;
+    border-bottom: 2px solid #374b5e;
+    outline: none;
+    padding-bottom: 3px;
 
+    display: inline-block;
+    background-color: white;
+
+}
+input.note-input[type="text"]{
+    font-size: 2.5em;
+    font-weight: 900;
+    max-width: 600px;
+    text-align: left;
+}
+input.note-input[type="number"]{
+    font-size: 2.5em;
+    font-weight: 500;
+    max-width: 100px;
+    text-align: right;
+}
 
 /*FOOTER*/
 

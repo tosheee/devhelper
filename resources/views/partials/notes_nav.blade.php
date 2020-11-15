@@ -1,4 +1,11 @@
-
+@if(isset($note_menu))
+<li class="active">
+    <a class="active" href="#">
+        <i class="fa fa-dashboard icon">
+            <b class="bg-danger"></b>
+        </i>
+        <span>Notes</span>
+    </a>
 
 <?php
 
@@ -35,7 +42,7 @@ if (isset($note_menu))
     echo makeTree($note_menu);
 }
 ?>
-
+</li>
 
 <script>
     var toggler = document.getElementsByClassName("caret-vertical-nav");
@@ -49,3 +56,4 @@ if (isset($note_menu))
         });
     }
 </script>
+@endif

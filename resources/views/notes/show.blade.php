@@ -17,15 +17,12 @@
 
                 <br/>
                 <div class="input-group" style="display:inline-block; vertical-align: middle;">
-                    <!--
-                    <input id="note_name"  size="50" type="text" class="form-control" placeholder="Note name">
-                    <input id="note_level" size="50" type="number" class="form-control" placeholder="Level">
-                    <input id="note_id"    size="50" type="number" class="form-control" placeholder="ID">
-                    -->
+
                     <div class="input-group-append">
                         <a id="btn-edit"     class="btn btn-xs btn-primary" href="/notes/{{ $note->id ?? '' }}/edit"> Edit </a>
                         <a id="btn-show"     class="btn btn-xs btn-info" href="/notes/{{ $note->id ?? '' }}"> Show </a>
                         <a id="btn-create"   class="btn btn-xs btn-success" href="/notes/create"> Add New</a>
+                        <a id="btn-create"   class="btn btn-xs btn-success" href="/notes"> Back</a>
                         <input id="btn-delete" class="btn btn-xs btn-danger" type="submit" name="commit" value="Delete">
                     </div>
 
