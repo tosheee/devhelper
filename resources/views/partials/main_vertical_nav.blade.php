@@ -23,6 +23,7 @@
                         <!-- nav -->
                         <nav class="nav-primary hidden-xs">
                             <ul class="nav">
+
                                 @include('partials.notes_nav')
                                 <!--
                                 <li class="active">
@@ -189,8 +190,17 @@
                                         <li > <a href="#" > <i class="fa fa-angle-right"></i> <span>404</span> </a> </li>
                                     </ul>
                                 </li>
-                                <li > <a href="#" > <b class="badge bg-danger pull-right">3</b> <i class="fa fa-envelope-o icon"> <b class="bg-primary dker"></b> </i> <span>Message</span> </a> </li>
-                                <li > <a href="/notes" > <i class="fa fa-pencil icon"><b class="bg-info"></b> </i> <span>Notes</span> </a> </li>
+                                <li > <a href="#" > <b class="badge bg-danger pull-right">2000</b> <i class="fa fa-envelope-o icon"> <b class="bg-primary dker"></b> </i> <span>Message</span> </a> </li>
+                                @if(!isset($note_menu))
+                                    <li >
+                                        <a href="/notes" >
+                                            <i class="fa fa-pencil icon">
+                                                <b class="bg-info"></b>
+                                            </i>
+                                            <span>Notes</span>
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </nav> <!-- / nav -->
                     </div>
