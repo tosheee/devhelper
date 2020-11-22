@@ -92,7 +92,7 @@
 
         .form-control-label {
             font-size: 10px;
-            color: #6C6C6C;
+            color: #e2e2e2;
             font-weight: bold;
             letter-spacing: 1px;
         }
@@ -129,6 +129,9 @@
 
         .loginbttm {
             padding: 0px;
+        }
+        label{
+            color: #ffffff;
         }
     </style>
 
